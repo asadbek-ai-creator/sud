@@ -15,5 +15,5 @@ RUN mkdir -p uploads templates
 # Expose the port the app runs on
 EXPOSE 5500
 
-# Run the application
-CMD ["python", "main.py"]
+# Run the application with gunicorn for production
+CMD ["gunicorn", "--bind", "0.0.0.0:5500", "--workers", "2", "--timeout", "120", "main:app"]

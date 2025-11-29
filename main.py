@@ -7,10 +7,11 @@ import logging
 from dotenv import load_dotenv
 import json
 
-# .env faylini yuklash
+# .env faylini yuklash (local development uchun)
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
+logging.info("Environment initialized. Checking for OPENAI_API_KEY...")
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
@@ -47,10 +48,19 @@ client = None
 MODEL = 'gpt-4o-mini'
 API_KEY = os.getenv("OPENAI_API_KEY")
 
+# Debug logging
+if API_KEY:
+    logging.info(f"API Key found: {API_KEY[:10]}...{API_KEY[-10:]} (length: {len(API_KEY)})")
+else:
+    logging.warning("OPENAI_API_KEY not found in environment variables")
+
 try:
     if not API_KEY:
         raise ValueError(
             "API kaliti topilmadi. Iltimos, uni .env fayliga OPENAI_API_KEY deb kiriting.")
+
+    # Strip any quotes that might be present
+    API_KEY = API_KEY.strip().strip('"').strip("'")
 
     client = OpenAI(api_key=API_KEY)
     logging.info("OpenAI mijoziga ulanish muvaffaqiyatli.")
