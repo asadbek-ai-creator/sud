@@ -5,8 +5,8 @@ services:
     build: .
     ports:
       - "5500:5500"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    env_file:
+      - .env
     volumes:
       - ./uploads:/app/uploads
     restart: unless-stopped

@@ -4,6 +4,46 @@ Bu loyiha O'zbekiston qonunchiligi asosida ishlaydigan sun'iy intellekt yordamch
 
 ## 🚀 O'rnatish va Ishga tushirish
 
+Loyihani ishga tushirishning **2 xil** yo'li bor: Docker bilan yoki to'g'ridan-to'g'ri Python bilan.
+
+---
+
+## 🐳 1-usul: Docker bilan ishga tushirish (Tavsiya etiladi)
+
+### 1. Docker o'rnatilganligini tekshirish
+Docker Desktop o'rnatilgan bo'lishi kerak. Tekshirish uchun:
+```bash
+docker --version
+docker-compose --version
+```
+
+### 2. `.env` faylini sozlash
+`.env.example` faylidan `.env` yarating:
+```bash
+cp .env.example .env
+```
+
+Keyin `.env` fayliga o'z OpenAI API kalitingizni qo'shing:
+```
+OPENAI_API_KEY="sk-proj-your-api-key-here"
+```
+
+### 3. Konteyner ishga tushirish
+```bash
+docker-compose up --build
+```
+
+Dastur ishga tushgach, brauzerda `http://localhost:5500` manziliga kiring.
+
+Konteyner to'xtatish uchun:
+```bash
+docker-compose down
+```
+
+---
+
+## 🐍 2-usul: To'g'ridan-to'g'ri Python bilan ishga tushirish
+
 Do'stingiz loyihani ishga tushirishi uchun quyidagi qadamlarni bajarishi kerak:
 
 ### 1. Python o'rnatilganligini tekshirish
